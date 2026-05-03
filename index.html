@@ -187,16 +187,16 @@ body.veille .s-anchor.a-debrief,body.veille .s-anchor.a-qa{display:none!importan
         <div class="fiche-tabs" id="fiche-tabs"></div>
       </div>
       <div class="block-nav" id="block-nav">
-        <div class="bnav-btn off" id="bn-debrief" onclick="scrollTo('debrief')">
+        <div class="bnav-btn off" id="bn-debrief" onclick="goToBlock('debrief')">
           <span class="bnav-icon">📋</span><span class="bnav-label">Debrief</span>
         </div>
-        <div class="bnav-btn off" id="bn-script" onclick="scrollTo('script')">
+        <div class="bnav-btn off" id="bn-script" onclick="goToBlock('script')">
           <span class="bnav-icon">🎤</span><span class="bnav-label">Script</span>
         </div>
-        <div class="bnav-btn off" id="bn-qa" onclick="scrollTo('qa')">
+        <div class="bnav-btn off" id="bn-qa" onclick="goToBlock('qa')">
           <span class="bnav-icon">❓</span><span class="bnav-label">Q&amp;A</span>
         </div>
-        <div class="bnav-btn off" id="bn-reflexes" onclick="scrollTo('reflexes')">
+        <div class="bnav-btn off" id="bn-reflexes" onclick="goToBlock('reflexes')">
           <span class="bnav-icon">⚡</span><span class="bnav-label">Réflexes</span>
         </div>
       </div>
@@ -634,12 +634,18 @@ function renderFiche(modId,fi){
   document.getElementById('fiche-body').innerHTML=h;
 }
 
-function scrollTo(block){
+function goToBlock(block){
   const anchor=document.getElementById('a-'+block);
   if(!anchor) return;
   const ca=document.getElementById('content-area');
-  const offset=anchor.getBoundingClientRect().top+ca.scrollTop-ca.getBoundingClientRect().top-8;
-  ca.scrollTo({top:offset,behavior:'smooth'});
+  const caRect=ca.getBoundingClientRect();
+  const anchorRect=anchor.getBoundingClientRect();
+  const hd=document.querySelector('.fiche-hd');
+  const bn=document.getElementById('block-nav');
+  const vb=document.querySelector('.veille-bar');
+  const stickyH=(hd?hd.offsetHeight:0)+(bn?bn.offsetHeight:0)+(vb?vb.offsetHeight:0);
+  const target=ca.scrollTop+(anchorRect.top-caRect.top)-stickyH-4;
+  ca.scrollTo({top:target,behavior:'smooth'});
 }
 
 function toggleVeille(){
@@ -649,7 +655,7 @@ function toggleVeille(){
   const lbl=document.getElementById('veille-lbl');
   btn.classList.toggle('on',veille);
   lbl.textContent=veille?'Vue complète':'Mode veille';
-  if(veille) scrollTo('script');
+  if(veille) requestAnimationFrame(()=>requestAnimationFrame(()=>goToBlock('script')));
 }
 
 function toggleQA(el){
