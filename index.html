@@ -1576,6 +1576,106 @@ const DATA = {
             ]
           }
         ]
+      },
+
+      /* ====================================================
+         FICHE 8 — CONSULTANT EXTERNE (ANCIEN DSI)
+      ==================================================== */
+      {
+        id: "consultant",
+        title: "Consultant DSI",
+        meta: [
+          { text: "J2 à J3", accent: false },
+          { text: "Cadrage relation", accent: false },
+          { text: "Prestataire · pas N-1", accent: true }
+        ],
+        sections: [
+          {
+            type: "alert",
+            variant: "warn",
+            label: "Profil à risque spécifique",
+            text: "Mandaté par le président, présent depuis 2 semaines, avec des réflexes d'ancien DSI déjà à l'œuvre. L'ambiguïté de son statut est le vrai risque — dissolvez-la dès J2-J3, structurellement, sans confrontation."
+          },
+          {
+            type: "heading",
+            text: "Script · Entretien de cadrage J2-J3"
+          },
+          {
+            type: "script",
+            label: "Ouverture · Poser le cadre de la relation",
+            text: "Je voulais qu'on se voit rapidement pour cadrer comment on va travailler ensemble. Le président m'a parlé de votre mission et je veux en tirer le meilleur parti. Ce que je vois comme fonctionnement idéal : vous continuez votre travail de structuration, vous me partagez vos analyses et recommandations au fur et à mesure, et on les valide ensemble avant qu'elles soient présentées au président ou partagées avec les équipes. Je suis votre interlocuteur principal ici."
+          },
+          {
+            type: "script",
+            label: "Reprendre la main sur ce qui a déjà été engagé",
+            text: "Je suis curieux de savoir où vous en êtes sur ces deux premières semaines — ce que vous avez observé, ce que vous avez déjà engagé avec les équipes. Ça m'aidera à m'aligner rapidement."
+          },
+          {
+            type: "script",
+            label: "Cadrer les interactions avec les équipes",
+            text: "Sur les interactions avec les équipes — je préfère que vous passiez par moi pour les sujets qui impliquent des orientations ou des décisions. Pour les entretiens de diagnostic, c'est différent, là vous avez toute latitude. Mais si quelque chose remonte qui nécessite une décision, je veux être dans la boucle avant que ça parte."
+          },
+          {
+            type: "script",
+            label: "Canal de reporting — le dire une seule fois, clairement",
+            text: "Sur le reporting vers le président : je veux être informé de ce que vous lui partagez avant que ça parte. Pas pour contrôler le fond — pour être en cohérence. Si on se dit des choses différentes, ça fragilise tout le monde, y compris vous."
+          },
+          {
+            type: "heading",
+            text: "Questions qu'il pourra poser"
+          },
+          {
+            type: "qa",
+            items: [
+              {
+                q: "\"Quelle est votre vision pour la DSI ?\"",
+                script: "Je suis en phase de diagnostic — j'aurai une vision structurée dans 30 jours. Ce que je sais déjà : je veux que la DSI soit en position de tenir ses engagements et de peser sur les décisions de l'entreprise. C'est dans ce cadre que votre mission prend tout son sens.",
+                why: "Ne pas se laisser pousser à livrer une vision prématurée. Recadre la mission du consultant dans votre cap sans le détailler."
+              },
+              {
+                q: "\"J'ai déjà des recommandations en cours — comment on procède ?\"",
+                script: "Partagez-les moi d'abord. Je les lis, on en discute, et je vous dis ce qu'on porte ensemble et ce qu'on ajuste. Rien ne part sans qu'on soit alignés.",
+                why: "Installe la validation systématique dès le premier livrable. C'est le marqueur concret de la relation client-fournisseur."
+              },
+              {
+                q: "\"J'ai pris certains engagements avec vos équipes ces deux dernières semaines...\"",
+                script: "Je veux les connaître tous. Pas pour les remettre en cause — pour savoir ce qui est en cours et décider ensemble de ce qu'on confirme ou ajuste. Faites-moi une liste d'ici demain.",
+                why: "Reprendre la main sur les engagements pris avant votre arrivée. Ton calme mais demande non négociable."
+              },
+              {
+                q: "\"Je rapporte directement au président sur certains sujets — c'est comme ça que la mission a été cadrée.\"",
+                script: "Je comprends le cadre initial. Ce que je vous propose : on maintient ce lien avec le président, mais vous m'informez en amont de ce que vous lui partagez sur la DSI. Ce n'est pas une restriction — c'est une question de cohérence. Ça vous protège autant que moi.",
+                why: "Ne pas confronter le mandat du président. Recadrer sans s'y opposer. \"Ça vous protège autant que moi\" est la clé — intérêt partagé."
+              },
+              {
+                q: "\"Dans mon expérience de DSI, la priorité c'est [sujet X]...\"",
+                script: "C'est une perspective intéressante. Je vais en tenir compte dans mon diagnostic. Ce que je veux éviter, c'est de transposer un modèle d'un autre contexte sans l'adapter à notre réalité ici. C'est d'ailleurs pour ça que votre regard externe est précieux — à condition qu'on le confronte à notre terrain.",
+                why: "Valider l'expertise sans la laisser s'imposer. \"Notre réalité ici\" signale que vous êtes le garant du contexte."
+              }
+            ]
+          },
+          {
+            type: "heading",
+            text: "Règles d'or · Gestion de la relation"
+          },
+          {
+            type: "or",
+            items: [
+              { num: 1, text: "<strong>Ni N-1, ni pair — prestataire sous votre direction.</strong> Ce positionnement se dit une fois, clairement, dès J2-J3. Il ne se redira pas — il se vit dans chaque interaction." },
+              { num: 2, text: "<strong>Tout livrable passe par vous avant de circuler.</strong> Le premier que vous commentez sérieusement installe la règle pour tous les suivants. Ne laissez pas le premier passer sans réaction." },
+              { num: 3, text: "<strong>Il ne va pas au président sans vous informer.</strong> Règle non négociable, posée une seule fois. Si elle est franchie : rappel en bilatérale, calme, ferme, immédiat." },
+              { num: 4, text: "<strong>Respectez son expertise — ne la subissez pas.</strong> Phrase réflexe si une recommandation s'impose trop vite : «\u00a0C'est une piste intéressante. Je veux qu'on la confronte à notre terrain avant de la valider.\u00a0»" },
+              { num: 5, text: "<strong>Il ne parle pas aux équipes en mode décision.</strong> Diagnostic libre, orientation bloquée. Si ça arrive : «\u00a0Pour ce type de sujet, je veux être dans la boucle avant qu'une direction soit donnée.\u00a0»" },
+              { num: 6, text: "<strong>Si un N-1 vous parle de lui en premier :</strong> «\u00a0Je vois. Dis-moi ce qui a été dit exactement.\u00a0» — sans réagir à chaud. Recueillez, analysez, agissez ensuite." }
+            ]
+          },
+          {
+            type: "alert",
+            variant: "warn",
+            label: "Signal d'alarme à J15",
+            text: "Si à J15 il produit encore des notes qui circulent sans passer par vous, ou s'il a eu des réunions avec vos N-1 sur des sujets d'orientation sans vous en informer — cadrez à nouveau en bilatérale. Une seule fois, pas deux. Si ça continue après, c'est un sujet à remonter au président."
+          }
+        ]
       }
 
     ] // end fiches
