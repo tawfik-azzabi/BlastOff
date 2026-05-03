@@ -834,7 +834,90 @@ const DATA = {
     fiches: [
 
       /* ====================================================
-         FICHE 1 — DISCOURS J1
+         FICHE 1 — ANNONCE COMEX
+      ==================================================== */
+      {
+        id: "comex",
+        title: "Annonce COMEX",
+        meta: [
+          { text: "J1 · en séance", accent: false },
+          { text: "3 min max", accent: false },
+          { text: "Sans slides", accent: true }
+        ],
+        sections: [
+          {
+            type: "heading",
+            text: "Script · Prise de parole post-annonce"
+          },
+          {
+            type: "script",
+            label: "Bloc 1 · Légitimité & lucidité — 1 min 30",
+            text: "Je tiens à remercier Monsieur le Président pour cette confiance — je la prends comme une responsabilité, pas comme une récompense. De part mes six ans ici, je connais déjà la réalité de la DSI : ce qui fonctionne bien et les points durs. Je ne débarque donc pas avec des idées préconçues ou des préjugés. C'est avec cette lucidité que je prends mes fonctions aujourd'hui."
+          },
+          {
+            type: "script",
+            label: "Bloc 2 · Engagement & ouverture — 1 min",
+            text: "Je ferai ce qui est en mon pouvoir pour que la DSI soit à la hauteur des attentes — et il y en a à tous les niveaux. Pour cela, j'aurai certainement besoin de chacun d'entre vous : pour me faire une lecture complète de la situation côté métiers, et pour avancer ensemble dans la bonne direction. Je reviendrai vers vous dans 30 jours avec une vision structurée et des propositions concrètes."
+          },
+          {
+            type: "alert",
+            variant: "ok",
+            label: "Sur les rencontres individuelles COMEX",
+            text: "Ne les annoncez pas formellement en séance — c'est perçu comme une procédure. Dans les 48h, envoyez un message court à chaque membre directement. C'est un signal de considération fort."
+          },
+          {
+            type: "script",
+            label: "Message à envoyer à chaque membre COMEX (48h)",
+            text: "Bonjour [prénom], je prends mes fonctions de DSI. Je voudrais qu'on se voit rapidement — 30 minutes — pour que tu me partages tes attentes et tes sujets prioritaires côté DSI. Quand es-tu disponible cette semaine ou la suivante ?"
+          },
+          {
+            type: "heading",
+            text: "Questions à déjouer"
+          },
+          {
+            type: "qa",
+            items: [
+              {
+                q: "\"Et le projet X, il en est où ?\"",
+                script: "C'est sur mon radar. Je veux vérifier les éléments avant de vous donner une réponse précise — je reviens vers vous sous 48h.",
+                why: "Ne jamais improviser une réponse chiffrée en COMEX. \"C'est sur mon radar\" signale la maîtrise sans promettre."
+              },
+              {
+                q: "\"On avait un engagement sur Y — ça tient toujours ?\"",
+                script: "Je veux d'abord vérifier le périmètre exact de cet engagement avant de confirmer. Je reviens vers vous d'ici 48h avec une réponse claire.",
+                why: "Ne pas confirmer ni infirmer sans vérifier. Confirmer sous pression et ne pas tenir = perte de crédibilité définitive."
+              },
+              {
+                q: "\"De quoi tu as besoin pour avancer ?\"",
+                script: "Pour l'instant : du temps pour faire un bon diagnostic. Et de votre clarté sur les priorités si j'ai à faire des arbitrages. Le reste, je le gère.",
+                why: "Répond sans se mettre en position de demandeur. \"Le reste, je le gère\" installe la posture DSI."
+              },
+              {
+                q: "\"Tu vas rester ou c'est un intérim de transition ?\"",
+                script: "Je suis nommé par intérim avec une perspective de confirmation. Ce que je peux vous dire : je m'implique pleinement dès aujourd'hui. L'intérim ne change pas mon niveau d'engagement.",
+                why: "Honnêteté + engagement. Le COMEX respecte la franchise."
+              }
+            ]
+          },
+          {
+            type: "heading",
+            text: "Règles d'or · COMEX"
+          },
+          {
+            type: "or",
+            items: [
+              { num: 1, text: "<strong>Parlez moins que vous ne le souhaitez.</strong> Chaque phrase compte. Moins vous en dites, plus chaque mot pèse." },
+              { num: 2, text: "<strong>Jamais de réponse technique en séance.</strong> «\u00a0Je préfère vous répondre avec les bons éléments plutôt que d'improviser ici.\u00a0»" },
+              { num: 3, text: "<strong>Observez pendant la séance.</strong> Qui parle ? Qui teste ? Qui est indifférent ? C'est votre première cartographie politique." },
+              { num: 4, text: "<strong>Phrase réflexe COMEX :</strong> «\u00a0Je prends note. Je reviens vers vous avec une position claire sous [délai].\u00a0»" },
+              { num: 5, text: "<strong>Jamais de référence à votre proximité PDG.</strong> Si quelqu'un la mentionne : «\u00a0Je suis là en tant que DSI. C'est à ce titre que je parle.\u00a0»" }
+            ]
+          }
+        ]
+      },
+
+      /* ====================================================
+         FICHE 2 — DISCOURS J1
       ==================================================== */
       {
         id: "discours",
@@ -847,23 +930,29 @@ const DATA = {
         sections: [
           {
             type: "heading",
-            text: "Objectifs du discours"
+            text: "Comment déclencher cette réunion ?"
           },
           {
-            type: "items",
-            items: [
-              "Créer une <strong>rupture de registre perceptible</strong> — vous n'êtes plus le collègue rigoureux, vous êtes le DSI",
-              "Ancrer votre légitimité par le parcours, pas par le titre — répondre implicitement à la question de l'âge",
-              "Poser deux exigences non négociables : <strong>engagements tenus</strong> et <strong>transparence sur les dérives</strong>",
-              "Signaler votre méthode : observer 30 jours avant de décider",
-              "<strong>Ne pas faire :</strong> présenter une vision, annoncer des règles, rassurer, promettre"
-            ]
+            type: "alert",
+            variant: "info",
+            label: "Contexte",
+            text: "C'est le PDG qui idéalement réunit vos N-1 pour vous présenter officiellement. Si ce n'est pas organisé, c'est vous qui prenez l'initiative. Dans les deux cas, le discours est le même."
+          },
+          {
+            type: "script",
+            label: "Objet du mail d'invitation",
+            text: "Premier échange collectif — [Prénom Nom], DSI"
+          },
+          {
+            type: "script",
+            label: "Corps du mail · version sobre et directe",
+            text: "Bonjour à tous,\n\nJe prends mes fonctions de DSI à compter de [date].\n\nJe souhaite qu'on se retrouve rapidement en collectif — 20 minutes, pas plus — pour un premier échange.\n\n📅 [Jour] [date] à [heure]\n📍 [Salle]\n\nPas de document à préparer. Je viendrai vous parler de ma méthode pour les prochaines semaines et de ce que j'attends de chacun d'entre vous.\n\nÀ très vite.\n\n[Prénom Nom]\nDSI"
           },
           {
             type: "alert",
             variant: "warn",
-            label: "Profils IT anciens + écart d'âge",
-            text: "Ces profils lisent la précipitation comme du stress et peuvent être sensibles à l'écart générationnel. La stratégie : reconnaître leur expérience explicitement au Bloc 4, puis affirmer ce que vous apportez que personne d'autre n'apporte. Complémentarité, pas compétition."
+            label: "Timing",
+            text: "Envoyez ce mail la veille ou l'avant-veille — jamais le matin même. Choisissez une heure en milieu de matinée (9h30–10h). Évitez le lundi 8h et le vendredi après-midi."
           },
           {
             type: "heading",
@@ -904,23 +993,6 @@ const DATA = {
             variant: "ok",
             label: "Réflexe clé",
             text: "Finissez sur ces trois phrases et ne rajoutez rien. Le silence qui suit est votre première décision de posture. Résistez à l'envie de meubler — ça affaiblit tout ce qui précède."
-          },
-          {
-            type: "heading",
-            text: "Ce qu'il ne faut pas dire"
-          },
-          {
-            type: "items",
-            items: [
-              "«\u00a0Je vais avoir besoin de votre aide\u00a0» → posture de demandeur, affaiblit immédiatement",
-              "«\u00a0Ma vision, c'est…\u00a0» → pas de légitimité encore pour une vision",
-              "«\u00a0Je sais que vous avez traversé une période difficile\u00a0» → condescendant",
-              "«\u00a0Je vais tout reprendre à zéro\u00a0» → anxiogène et irréaliste",
-              "«\u00a0Légitimement\u00a0» ou tout mot qui sonne défensif → vous n'avez pas à vous justifier",
-              "«\u00a0Les amis\u00a0» en clôture → avec l'écart d'âge, lu comme une tentative de désamorcer la hiérarchie",
-              "Toute référence à votre proximité avec le président",
-              "Les règles de gouvernance → elles arrivent à J30 en collectif"
-            ]
           },
           {
             type: "heading",
@@ -1216,99 +1288,6 @@ const DATA = {
               { num: 2, text: "<strong>Questions ciblées, pas revue exhaustive.</strong> 2-3 points flous ou absents maximum — pas un debriefing complet." },
               { num: 3, text: "<strong>La délégation se dit clairement.</strong> Pas d'ambiguïté sur ce que vous gardez. L'imprécision génère de l'anxiété chez les profils prudents." },
               { num: 4, text: "<strong>Clôturez sur la prochaine étape.</strong> La réunion collective J30 doit être annoncée ici — ça crée une attente saine et installe le calendrier." }
-            ]
-          }
-        ]
-      },
-
-      /* ====================================================
-         FICHE 4 — ANNONCE COMEX
-      ==================================================== */
-      {
-        id: "comex",
-        title: "Annonce COMEX",
-        meta: [
-          { text: "J1 à J3", accent: false },
-          { text: "10 min max", accent: false },
-          { text: "Sans slides", accent: true }
-        ],
-        sections: [
-          {
-            type: "heading",
-            text: "Script · Prise de parole post-annonce"
-          },
-          {
-            type: "script",
-            label: "Bloc 1 · Remercier sans s'aplatir — 20 sec",
-            text: "Merci pour cette confiance. Je la prends comme une responsabilité, pas comme une récompense."
-          },
-          {
-            type: "script",
-            label: "Bloc 2 · Poser votre méthode — 1 min",
-            text: "Je vais prendre les premières semaines pour comprendre avant d'agir. J'ai besoin de ma propre lecture de la situation avant de vous présenter des priorités. Je reviendrai vers vous dans 30 jours avec une vision structurée et des propositions concrètes."
-          },
-          {
-            type: "script",
-            label: "Bloc 3 · Une attente envers le COMEX — 1 min",
-            text: "Une chose que je vous demande dès maintenant : que les demandes vers la DSI passent par les canaux formels. Pas en direct avec les équipes, pas par des engagements pris en couloir. Ça m'aidera à piloter de façon cohérente dès le départ."
-          },
-          {
-            type: "script",
-            label: "Bloc 4 · Clôture — 15 sec",
-            text: "Je suis disponible pour chacun d'entre vous. On se voit dans les prochains jours."
-          },
-          {
-            type: "alert",
-            variant: "ok",
-            label: "Sur les rencontres individuelles COMEX",
-            text: "Ne les annoncez pas formellement en séance — c'est perçu comme une procédure. Dans les 48h, envoyez un message court à chaque membre directement. C'est un signal de considération fort."
-          },
-          {
-            type: "script",
-            label: "Message à envoyer à chaque membre COMEX (48h)",
-            text: "Bonjour [prénom], je prends mes fonctions de DSI. Je voudrais qu'on se voit rapidement — 30 minutes — pour que tu me partages tes attentes et tes sujets prioritaires côté DSI. Quand es-tu disponible cette semaine ou la suivante ?"
-          },
-          {
-            type: "heading",
-            text: "Questions à déjouer"
-          },
-          {
-            type: "qa",
-            items: [
-              {
-                q: "\"Et le projet X, il en est où ?\"",
-                script: "C'est sur mon radar. Je veux vérifier les éléments avant de vous donner une réponse précise — je reviens vers vous sous 48h.",
-                why: "Ne jamais improviser une réponse chiffrée en COMEX. \"C'est sur mon radar\" signale la maîtrise sans promettre."
-              },
-              {
-                q: "\"On avait un engagement sur Y — ça tient toujours ?\"",
-                script: "Je veux d'abord vérifier le périmètre exact de cet engagement avant de confirmer. Je reviens vers vous d'ici 48h avec une réponse claire.",
-                why: "Ne pas confirmer ni infirmer sans vérifier. Confirmer sous pression et ne pas tenir = perte de crédibilité définitive."
-              },
-              {
-                q: "\"De quoi tu as besoin pour avancer ?\"",
-                script: "Pour l'instant : du temps pour faire un bon diagnostic. Et de votre clarté sur les priorités si j'ai à faire des arbitrages. Le reste, je le gère.",
-                why: "Répond sans se mettre en position de demandeur. \"Le reste, je le gère\" installe la posture DSI."
-              },
-              {
-                q: "\"Tu vas rester ou c'est un intérim de transition ?\"",
-                script: "Je suis nommé par intérim avec une perspective de confirmation. Ce que je peux vous dire : je m'implique pleinement dès aujourd'hui. L'intérim ne change pas mon niveau d'engagement.",
-                why: "Honnêteté + engagement. Le COMEX respecte la franchise."
-              }
-            ]
-          },
-          {
-            type: "heading",
-            text: "Règles d'or · COMEX"
-          },
-          {
-            type: "or",
-            items: [
-              { num: 1, text: "<strong>Parlez moins que vous ne le souhaitez.</strong> Chaque phrase compte. Moins vous en dites, plus chaque mot pèse." },
-              { num: 2, text: "<strong>Jamais de réponse technique en séance.</strong> «\u00a0Je préfère vous répondre avec les bons éléments plutôt que d'improviser ici.\u00a0»" },
-              { num: 3, text: "<strong>Observez pendant la séance.</strong> Qui parle ? Qui teste ? Qui est indifférent ? C'est votre première cartographie politique." },
-              { num: 4, text: "<strong>Phrase réflexe COMEX :</strong> «\u00a0Je prends note. Je reviens vers vous avec une position claire sous [délai].\u00a0»" },
-              { num: 5, text: "<strong>Jamais de référence à votre proximité PDG.</strong> Si quelqu'un la mentionne : «\u00a0Je suis là en tant que DSI. C'est à ce titre que je parle.\u00a0»" }
             ]
           }
         ]
@@ -1621,7 +1600,19 @@ const REGLES_GLOBALES = [
     ]
   },
   {
-    section: "Posture · Les 5 invariants",
+    section: "Gérer les interruptions",
+    items: [
+      { label: "Principe fondamental", phrase: "Ne réagissez jamais dans la seconde qui suit une interruption. La micro-pause avant de répondre dit : 'j'ai choisi comment répondre' — pas 'il m'a déstabilisé'." },
+      { label: "Parler lentement — le déclencheur", phrase: "Faites une pause silencieuse de 2 secondes avant votre premier mot. Imperceptible pour les autres, décisif pour votre débit." },
+      { label: "Interruption pour corriger — finissez votre phrase", phrase: "Je t'entends — laisse-moi finir ma pensée et je reviens sur ton point." },
+      { label: "Si la correction est juste", phrase: "Tu as raison sur ce point — ce que je voulais dire c'est [votre formulation]." },
+      { label: "Interruption pour reformuler vos mots", phrase: "Pas tout à fait — ce que je dis c'est [votre formulation originale], pas [leur reformulation]." },
+      { label: "Interruption pour changer de sujet", phrase: "Je vais terminer sur ce point et on pourra passer à ton sujet." },
+      { label: "Si l'interruption persiste", phrase: "[Prénom], je t'en prie — laisse-moi conclure." },
+      { label: "Récupérer un point coupé — quelques minutes après", phrase: "Je voulais finir sur mon point précédent avant qu'on avance — [votre conclusion en une phrase]." }
+    ]
+  },
+  {
     items: [
       { label: "Règle 1", phrase: "Parlez lentement. La précipitation est lue comme du stress." },
       { label: "Règle 2", phrase: "Ne cherchez pas l'approbation. Vous informez, vous ne consultez pas." },
