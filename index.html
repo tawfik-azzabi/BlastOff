@@ -137,6 +137,22 @@ body.veille .s-anchor.a-debrief,body.veille .s-anchor.a-qa{display:none!importan
 .nav-lbl{font-size:10px;letter-spacing:.04em;color:var(--tx3);font-family:var(--body)}
 .nav-item.active .nav-icon,.nav-item.active .nav-lbl{color:var(--acc)}
 .nav-item.gold.active .nav-icon,.nav-item.gold.active .nav-lbl{color:var(--gold)}
+
+/* ── PROFILE SELECTOR ────────────────── */
+.ppill{display:inline-block;font-size:12px;padding:5px 13px;border-radius:20px;border:1px solid var(--border);color:var(--tx2);background:var(--bg-el);cursor:pointer;font-family:var(--body);transition:all .15s;-webkit-tap-highlight-color:transparent;margin-bottom:2px}
+.ppill.active{background:var(--acc);border-color:var(--acc);color:#fff}
+.profile-script-block{background:var(--bg-el);border:1px solid var(--border-acc);border-left:3px solid var(--acc);border-radius:0 var(--r-md) var(--r-md) 0;padding:13px 15px;margin:7px 0}
+.profile-script-timing{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--acc);font-weight:600;margin-bottom:8px;font-family:var(--body)}
+.profile-script-text{font-style:italic;color:#C5D8F0;font-size:16px;line-height:1.75;white-space:pre-line}
+.lt-block{background:var(--bg-card);border:1px solid rgba(201,168,76,0.3);border-left:3px solid var(--gold);border-radius:0 var(--r-md) var(--r-md) 0;padding:13px 15px;margin:7px 0}
+.lt-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px;font-family:var(--body)}
+.lt-text{font-size:15px;color:#E0D5B8;line-height:1.7;white-space:pre-line}
+.vig-block{background:rgba(192,84,74,0.08);border-left:3px solid #C0544A;border-radius:0 var(--r-md) var(--r-md) 0;padding:11px 14px;margin:7px 0}
+.vig-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#C0544A;font-weight:600;margin-bottom:6px;font-family:var(--body)}
+.vig-text{font-size:15px;color:#E8B4B0;line-height:1.6;white-space:pre-line}
+.sig-block{background:rgba(90,158,111,0.08);border-left:3px solid #5A9E6F;border-radius:0 var(--r-md) var(--r-md) 0;padding:11px 14px;margin:7px 0}
+.sig-label{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#5A9E6F;font-weight:600;margin-bottom:6px;font-family:var(--body)}
+.sig-text{font-size:15px;color:#A8D4B4;line-height:1.6}
 </style>
 </head>
 <body>
@@ -199,6 +215,10 @@ body.veille .s-anchor.a-debrief,body.veille .s-anchor.a-qa{display:none!importan
         <div class="bnav-btn off" id="bn-reflexes" onclick="goToBlock('reflexes')">
           <span class="bnav-icon">⚡</span><span class="bnav-label">Réflexes</span>
         </div>
+      </div>
+      <div id="profile-bar" style="display:none;padding:10px 20px;background:var(--bg);border-bottom:1px solid var(--border)">
+        <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--tx3);margin-bottom:6px;font-weight:600;font-family:var(--body)">Profil N-1</div>
+        <div id="profile-pills" style="display:flex;gap:6px;flex-wrap:wrap"></div>
       </div>
       <div class="veille-bar">
         <div class="veille-btn" id="veille-btn" onclick="toggleVeille()">
@@ -668,7 +688,7 @@ const REGLES = [
 /* ============================================================
    ENGINE
    ============================================================ */
-let curMod='s1', curFi=0, veille=false;
+let curMod='s1', curFi=0, veille=false, curProfile=null;
 
 function navigate(scr){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -692,7 +712,14 @@ function openModule(id){ curMod=id; curFi=0; navigate('fiches'); }
 
 function switchFiche(i){
   curFi=i;
+  curProfile=null;
   renderFiche(curMod,i);
+  document.getElementById('content-area').scrollTop=0;
+}
+
+function selectProfile(p){
+  curProfile=p;
+  renderFiche(curMod,curFi);
   document.getElementById('content-area').scrollTop=0;
 }
 
@@ -710,11 +737,11 @@ function renderFiche(modId,fi){
   // profile bar
   const pb=document.getElementById('profile-bar');
   const pp=document.getElementById('profile-pills');
-  if(f.profileMode && f.profiles){
+  if(pb && f.profileMode && f.profiles){
     pb.style.display='block';
     if(!curProfile) curProfile=f.profiles[0];
-    pp.innerHTML=f.profiles.map(p=>`<div class="ppill${p===curProfile?' active':''}" onclick="selectProfile('${p}')">${p}</div>`).join('');
-  } else {
+    if(pp) pp.innerHTML=f.profiles.map(p=>`<div class="ppill${p===curProfile?' active':''}" onclick="selectProfile('${p}')">${p}</div>`).join('');
+  } else if(pb){
     pb.style.display='none';
     curProfile=null;
   }
