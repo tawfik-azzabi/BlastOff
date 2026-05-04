@@ -321,22 +321,76 @@ const DATA = { s1: { label:"Module 1 · Semaine 1", fiches: [
 /* ── 1ER ENTRETIEN N-1 ─────────────────────────────────────── */
 { id:"rdv1", title:"1er entretien N-1",
   meta:[{text:"J2 à J5"},{text:"90 min / N-1"},{text:"Salle neutre",accent:true}],
+  profileMode: true,
+  profiles: ["Études & Dev","Exploitation","Infrastructures","Architecture","Pilotage"],
   debrief:{
     subject:"On se voit cette semaine — [Prénom]",
     body:"Bonjour [prénom],\n\nJe te reçois [jour] à [heure] pour un premier échange, environ 1h30.\n\nPas de document à préparer. Je veux juste qu'on parle : ce que tu as en cours, ce qui avance bien, ce qui coince, ce qui t'inquiète.\n\nÀ [jour].\n\n[Prénom Nom]"
   },
-  script:[
-    { timing:"Ouverture — 5 min",
-      text:"Je vais être direct avec toi : ce n'est pas un entretien d'évaluation. Ce que je cherche, c'est comprendre ta réalité : les vrais sujets, les vrais blocages, les vraies inquiétudes. Plus tu es direct, plus ça m'aide. Ce qu'on se dit ici reste entre nous." },
-    { timing:"Bloc 1 · Feuille de route réelle — 25 min",
-      text:"Quels sont tes 3 chantiers principaux en ce moment ? Pour chacun, dis-moi où tu en es vraiment — pas la version officielle.\n\nQu'est-ce qui est dans ta feuille de route mais qui n'avance pas vraiment ? C'est quoi le vrai blocage ?\n\nQuels engagements as-tu pris envers les métiers ? Lesquels sont à risque ?\n\nSur quoi passes-tu la majorité de ton temps en ce moment ?" },
-    { timing:"Bloc 2 · Risques & signaux faibles — 20 min",
-      text:"Si tu devais me signaler un sujet qui pourrait me créer un problème dans 60 jours — lequel ce serait ?\n\nQu'est-ce qui se dit dans les couloirs mais pas en réunion ?\n\nY a-t-il un dossier qu'on a mis de côté et qui va finir par revenir ?\n\nSi tu étais à ma place, qu'est-ce que tu ferais en premier ?" },
-    { timing:"Bloc 3 · Équipe & besoins — 20 min",
-      text:"Comment tu décrirais l'ambiance dans ton équipe en ce moment ?\n\nQu'est-ce qui t'a manqué côté direction DSI ces derniers mois ?\n\nDe quoi tu as besoin de moi pour avancer sur tes sujets ?" },
-    { timing:"Bloc 4 · Commande de livrables — 5 min",
-      text:"Je vais te demander deux choses pour [date J+10]. D'abord : un état de ton portefeuille — tes projets actifs, leur statut réel, les dépendances, les risques. Deux pages maximum, pas de mise en forme particulière. Ensuite : tes trois priorités proposées pour les 60 prochains jours. Ce que toi tu mettrais en avant — pas ce que tu penses que j'ai envie d'entendre. C'est ta lecture qui compte." }
-  ],
+  script:{
+    common:[
+      { timing:"Ouverture — 5 min",
+        text:"Je vais être direct avec toi : ce n'est pas un entretien d'évaluation. Ce que je cherche, c'est comprendre ta réalité : les vrais sujets, les vrais blocages, les vraies inquiétudes. Plus tu es direct, plus ça m'aide. Ce qu'on se dit ici reste entre nous." },
+      { timing:"Bloc 1 · Feuille de route réelle — 25 min",
+        text:"Quels sont tes 3 chantiers principaux en ce moment ? Pour chacun, dis-moi où tu en es vraiment — pas la version officielle.\n\nQu'est-ce qui est dans ta feuille de route mais qui n'avance pas vraiment ? C'est quoi le vrai blocage ?\n\nQuels engagements as-tu pris envers les métiers ? Lesquels sont à risque ?\n\nSur quoi passes-tu la majorité de ton temps en ce moment ?" },
+      { timing:"Bloc 2 · Risques & signaux faibles — 20 min",
+        text:"Si tu devais me signaler un sujet qui pourrait me créer un problème dans 60 jours — lequel ce serait ?\n\nQu'est-ce qui se dit dans les couloirs mais pas en réunion ?\n\nY a-t-il un dossier qu'on a mis de côté et qui va finir par revenir ?\n\nSi tu étais à ma place, qu'est-ce que tu ferais en premier ?" },
+      { timing:"Bloc 3 · Équipe & besoins — 20 min",
+        text:"Comment tu décrirais l'ambiance dans ton équipe en ce moment ?\n\nQu'est-ce qui t'a manqué côté direction DSI ces derniers mois ?\n\nDe quoi tu as besoin de moi pour avancer sur tes sujets ?" }
+    ],
+    byProfile:{
+      "Études & Dev":{
+        ouverture:"Tu es au cœur du delivery — c'est le périmètre le plus exposé de la DSI. Je veux comprendre ta réalité avant tout autre chose.",
+        questions:[
+          { timing:"Questions spécifiques · Études & Dev",
+            text:"Comment tu vois ton rôle évoluer dans la nouvelle configuration ?\n\nY a-t-il des sujets sur lesquels tu as une position forte et qui n'ont pas encore été entendus ?\n\nQu'est-ce qui te permettrait d'aller plus vite sur le delivery si tu avais le choix ?" }
+        ],
+        livrables:"En plus du portefeuille et des priorités : une note sur ta vision du delivery à 12 mois — les chantiers structurants, les risques, ce dont tu aurais besoin pour tenir. Format libre, 2 pages max.",
+        livrablesTransverses:"contributeur",
+        vigilance:"S'il teste ta maîtrise technique : « C'est ton domaine d'expertise — je veux d'abord comprendre ta lecture avant de former la mienne. »\n\nS'il signale implicitement qu'il sait déjà ce qu'il faut faire : note sans valider, reviens dessus au 2ème entretien.\n\nS'il est en retrait ou minimaliste dans ses réponses : « J'ai l'impression que tu te limites — est-ce que c'est volontaire ? »"
+      },
+      "Exploitation":{
+        ouverture:"Tu es en bout de chaîne — ça veut dire que tu absorbes tous les problèmes des autres. Je veux comprendre ce que ça représente vraiment.",
+        questions:[
+          { timing:"Questions spécifiques · Exploitation",
+            text:"Quand quelque chose dérape en amont — Études, Infra — comment ça se passe concrètement pour toi ?\n\nEst-ce que tu as les moyens de le signaler tôt, ou tu l'absorbes ?\n\nQu'est-ce qui te met le plus en difficulté avec les équipes qui te précèdent dans la chaîne ?" }
+        ],
+        livrables:"État du portefeuille standard + les 3 priorités. Ajoute spécifiquement : les dépendances amont critiques et leur niveau de maîtrise actuel.",
+        livrablesTransverses:"contributeur",
+        vigilance:"Si tout est « ça se passe bien » ou « on s'adapte » : relance systématiquement avec « Et si je demandais à ton équipe, elle dirait quoi ? »\n\nSa conciliation peut masquer des irritants réels inter-équipes — creuse les dépendances amont."
+      },
+      "Infrastructures":{
+        ouverture:"Tu as une lecture longue de cette DSI que personne d'autre n'a. Je veux en profiter — pas juste du portefeuille, de ta vraie lecture de la situation.",
+        questions:[
+          { timing:"Questions spécifiques · Infrastructures",
+            text:"Avec le recul que tu as, qu'est-ce qui revient toujours comme problème non résolu ?\n\nQu'est-ce qui a déjà été tenté et qui n'a pas marché — et pourquoi selon toi ?\n\nSi tu devais me dire une chose que personne d'autre ne me dira — ce serait quoi ?" }
+        ],
+        livrables:"État du portefeuille standard + les 3 priorités. Ajoute : les contrats fournisseurs et prestataires dans ton périmètre — montant, échéance, niveau de satisfaction — pour contribution à l'inventaire contractuel global.",
+        livrablesTransverses:"contributeur",
+        vigilance:"S'il est dans une posture d'attente polie sans s'engager : « Ta lecture longue m'intéresse vraiment — qu'est-ce que tu ne me dis pas encore ? »\n\nS'il te teste implicitement sur ta légitimité : ne défends pas. Réponds par une question : « Tu as l'air de penser que ça va être complexe — dis-moi ce que tu vois. »"
+      },
+      "Architecture":{
+        ouverture:"Tu arrives dans un périmètre qui reste à définir. Je veux comprendre comment tu le vois, toi — pas ce qui est écrit dans un org chart.",
+        questions:[
+          { timing:"Questions spécifiques · Architecture",
+            text:"Comment tu définirais ton périmètre idéal si tu avais carte blanche ?\n\nOù est-ce que tu penses pouvoir apporter le plus de valeur à court terme ?\n\nQuelles sont les interfaces les plus importantes à construire — avec Études, avec Infra, avec Pilotage ?\n\nQuels sujets as-tu déjà une position claire — et lesquels nécessitent encore du temps ?" }
+        ],
+        livrables:"Pas d'état de portefeuille classique. À la place : une note sur ta vision du périmètre Architecture et les 2 à 3 chantiers fondateurs que tu veux engager. Format libre.",
+        livrablesTransverses:"contributeur",
+        vigilance:"Ne pas lui donner des orientations trop directes en séance — il risque de les adopter pour te plaire plutôt que de développer sa propre lecture.\n\nSi son périmètre est vraiment flou, rassure : « Tu n'as pas à tout avoir défini maintenant. Je veux juste ta première lecture. »"
+      },
+      "Pilotage":{
+        ouverture:"Tu as une vision transverse que personne d'autre n'a dans cette équipe. Je veux comprendre comment tu lis la situation globale — avant d'avoir les vues partielles des autres.",
+        questions:[
+          { timing:"Questions spécifiques · Pilotage",
+            text:"Quelle est ton évaluation honnête de la maturité du pilotage de portefeuille aujourd'hui ?\n\nEst-ce que la feuille de route actuelle est réaliste — ou est-ce qu'on s'est engagés sur trop de choses ?\n\nOù est-ce que tu vois les plus gros écarts entre ce qui est prévu et ce qui va réellement se passer ?\n\nComment tu vois ton rôle vis-à-vis des autres Directeurs — coordinateur, facilitateur, arbitre ?" }
+        ],
+        livrables:"En plus du portefeuille et des priorités : une lecture de l'état de santé global du portefeuille SI — ce qui est solide, ce qui est à risque, ce qui devrait être recadré. 2 pages max.\n\nLivrables transverses prioritaires (voir ci-dessous) : c'est toi qui produis.",
+        livrablesTransverses:"producteur",
+        vigilance:"C'est ton profil le plus stratégique à court terme — ne le sur-sollicite pas en séance. Laisse-le développer sa lecture sans l'orienter.\n\nSi ses priorités proposées entrent en conflit avec ce que tu as entendu ailleurs, note sans trancher — c'est le matériel du 2ème entretien."
+      }
+    }
+  },
   qa:[
     { q:"\"Qu'est-ce que tu vas changer dans mon périmètre ?\"",
       script:"Je ne sais pas encore. C'est pour ça que je t'écoute. Je ne vais rien décider avant d'avoir fait le tour de la situation." },
@@ -361,17 +415,66 @@ const DATA = { s1: { label:"Module 1 · Semaine 1", fiches: [
 /* ── 2ÈME ENTRETIEN N-1 ────────────────────────────────────── */
 { id:"rdv2", title:"2ème entretien N-1",
   meta:[{text:"J18 à J25"},{text:"45 min / N-1",accent:true}],
-  debrief:null,
-  script:[
-    { timing:"Ouverture · Sur base des livrables — 5 min",
-      text:"J'ai lu ce que tu m'as envoyé. Je veux te restituer ma lecture et qu'on vérifie ensemble si j'ai bien compris." },
-    { timing:"Clarifications ciblées — 15 min",
-      text:"Tu as mentionné [sujet X] comme risque. Qu'est-ce qui se passerait concrètement si ça dérape ?\n\nTu n'as pas parlé de [sujet Y]. C'est volontaire ?\n\nTes trois priorités proposées — dans quel ordre tu les mettrais si tu devais n'en faire qu'une seule ?" },
-    { timing:"Positionnement des délégations — 15 min",
-      text:"Sur la base de ce que tu m'as dit et de ce que tu m'as envoyé, voici comment je vois les choses. Je te confirme la responsabilité pleine sur [périmètre X]. Sur [sujet Y], je reste dans la boucle pour l'instant — pas parce que je n'ai pas confiance, mais parce que c'est un sujet à enjeu sur lequel je veux avoir ma propre lecture avant de déléguer complètement." },
-    { timing:"Clôture — 5 min",
-      text:"Dans une dizaine de jours, je réunis tout le collectif N-1. Je vous présenterai ma synthèse de la situation et la façon dont je veux qu'on fonctionne ensemble. D'ici là, si quelque chose d'urgent remonte, tu m'appelles directement." }
-  ],
+  profileMode: true,
+  profiles: ["Études & Dev","Exploitation","Infrastructures","Architecture","Pilotage"],
+  debrief: null,
+  script:{
+    common:[
+      { timing:"Ouverture · Sur base des livrables — 5 min",
+        text:"J'ai lu ce que tu m'as envoyé. Je veux te restituer ma lecture et qu'on vérifie ensemble si j'ai bien compris." },
+      { timing:"Clarifications ciblées — 15 min",
+        text:"Tu as mentionné [sujet X] comme risque. Qu'est-ce qui se passerait concrètement si ça dérape ?\n\nTu n'as pas parlé de [sujet Y]. C'est volontaire ?\n\nTes priorités proposées — dans quel ordre tu les mettrais si tu devais n'en faire qu'une seule ?" },
+      { timing:"Clôture — 5 min",
+        text:"Dans une dizaine de jours, je réunis tout le collectif N-1. Je vous présenterai ma synthèse de la situation et la façon dont je veux qu'on fonctionne ensemble. D'ici là, si quelque chose d'urgent remonte, tu m'appelles directement." }
+    ],
+    byProfile:{
+      "Études & Dev":{
+        ouverture:"",
+        questions:[
+          { timing:"Délégation & engagement — 15 min",
+            text:"Sur tes priorités — qu'est-ce dont tu as besoin de moi pour avancer, et qu'est-ce que tu peux piloter seul ?\n\nJe compte sur toi comme pilier du delivery. Ce que tu pilotes, tu le pilotes vraiment — je ne serai pas dans tes réunions opérationnelles. En contrepartie, j'ai besoin que tu m'alertes tôt. Ça te convient ?" }
+        ],
+        signal:"Tu as une lecture du delivery que personne d'autre dans cette équipe n'a. Je veux m'appuyer dessus, pas la contourner.",
+        vigilance:"Si son livrable est minimaliste ou défensif : « J'ai l'impression que tu t'es limité dans tes propositions — est-ce que c'est volontaire ? »\n\nS'il est engagé et riche : confirme la délégation pleine et dis-le clairement."
+      },
+      "Exploitation":{
+        ouverture:"",
+        questions:[
+          { timing:"Dépendances amont — 15 min",
+            text:"Dans ton portefeuille, qu'est-ce qui dépend directement d'Études & Dev pour avancer ? Quel est ton niveau de maîtrise sur ces dépendances ?\n\nY a-t-il des sujets que tu n'as pas mis dans ton livrable parce que tu ne savais pas comment les formuler ?" }
+        ],
+        signal:"Ce que tu portes, tu le portes. Mais quand quelque chose vient de l'amont et que ça va impacter tes engagements — tu me le dis avant que ça explose côté utilisateurs.",
+        vigilance:"Si son livrable est trop lisse : creuse les dépendances amont non nommées. C'est souvent là que les vrais problèmes se cachent."
+      },
+      "Infrastructures":{
+        ouverture:"",
+        questions:[
+          { timing:"Ce qui n'est pas dans le livrable — 15 min",
+            text:"Il y a des choses que tu n'as pas mises dans ce document parce qu'elles sont complexes à formuler — je veux qu'on en parle ici.\n\nSur tes priorités proposées — laquelle te préoccupe le plus si on ne la traite pas ?" }
+        ],
+        signal:"Tu sais ce que tu fais. Ce que je veux, c'est être dans la boucle sur les sujets à risque — pas sur le reste. Ta lecture longue m'intéresse sur certains sujets : je reviendrai vers toi spécifiquement.",
+        vigilance:"Ne formule pas la délégation comme une chose accordée — c'est une chose acquise pour lui. Formule-la comme une confirmation d'un fonctionnement qui lui convient déjà."
+      },
+      "Architecture":{
+        ouverture:"",
+        questions:[
+          { timing:"Périmètre & interfaces — 15 min",
+            text:"Dans ce que tu m'as envoyé, tu parles de tes chantiers — mais comment tu vois les connexions avec Études, avec Infra, avec Pilotage ? C'est là que ton périmètre va vraiment se définir.\n\nQuels sont les sujets sur lesquels tu as déjà une position claire — et ceux où tu as encore besoin de temps ?" }
+        ],
+        signal:"Je ne t'attends pas sur un portefeuille complet à ce stade. Ce que j'attends dans les 30 prochains jours : les 2-3 chantiers fondateurs et les interfaces critiques. On les valide ensemble.",
+        vigilance:"Si son livrable est flou : ne le fragilise pas. Oriente vers le concret : « Qu'est-ce que tu ferais en premier si tu avais l'aval demain ? »"
+      },
+      "Pilotage":{
+        ouverture:"",
+        questions:[
+          { timing:"Lecture transverse & CODIR — 15 min",
+            text:"Dans ta lecture de l'état de santé du portefeuille — quels sont les 2 ou 3 signaux qui t'inquiètent vraiment ?\n\nEst-ce qu'il y a des projets dans la feuille de route qui ne devraient plus y être — soit parce qu'ils ne sont pas réalistes, soit parce qu'ils n'ont plus de sponsor actif ?\n\nComment tu vois ton rôle vis-à-vis des autres Directeurs au quotidien — coordinateur, facilitateur, arbitre ?" }
+        ],
+        signal:"Tu vas jouer un rôle clé dans la préparation de notre premier CODIR. Je vais travailler étroitement avec toi sur ça. Tu es mon premier niveau de synthèse sur l'état du portefeuille — pas en court-circuitant les autres, en me donnant la lecture transverse que je n'ai pas autrement.",
+        vigilance:"C'est l'entretien où vous allez définir votre mode de travail ensemble — soyez précis sur ce que vous attendez de lui et laissez-lui le temps de réagir."
+      }
+    }
+  },
   qa:[
     { q:"\"Et c'est quoi tes règles de fonctionnement ?\"",
       script:"Tu le sauras en même temps que les autres." },
@@ -381,9 +484,11 @@ const DATA = { s1: { label:"Module 1 · Semaine 1", fiches: [
   reflexes:[
     { ctx:"Pour montrer que vous avez lu", phrase:"J'ai noté [point précis] — dis-moi si j'ai bien compris." },
     { ctx:"Sur un point absent du livrable", phrase:"Tu n'as pas parlé de [sujet]. C'est volontaire ?" },
-    { ctx:"Pour clôturer sur la prochaine étape", phrase:"Dans une dizaine de jours, je réunis tout le collectif N-1." }
+    { ctx:"Pour clôturer sur la prochaine étape", phrase:"Dans une dizaine de jours, je réunis tout le collectif N-1." },
+    { ctx:"Sur la délégation — formuler clairement", phrase:"Ce que tu pilotes, tu le pilotes vraiment. En contrepartie, j'ai besoin que tu m'alertes tôt." }
   ]
 },
+
 
 /* ── PDG ───────────────────────────────────────────────────── */
 { id:"pdg", title:"PDG",
@@ -602,33 +707,104 @@ function renderFiche(modId,fi){
   tabs.innerHTML=mod.fiches.map((fc,i)=>`<div class="ftab${i===fi?' active':''}" onclick="switchFiche(${i})">${fc.title}</div>`).join('');
   setTimeout(()=>{const at=tabs.querySelector('.ftab.active');if(at)at.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});},50);
 
-  // block nav
-  const has={ debrief:!!f.debrief, script:!!(f.script&&f.script.length), qa:!!(f.qa&&f.qa.length), reflexes:!!(f.reflexes&&f.reflexes.length) };
+  // profile bar
+  const pb=document.getElementById('profile-bar');
+  const pp=document.getElementById('profile-pills');
+  if(f.profileMode && f.profiles){
+    pb.style.display='block';
+    if(!curProfile) curProfile=f.profiles[0];
+    pp.innerHTML=f.profiles.map(p=>`<div class="ppill${p===curProfile?' active':''}" onclick="selectProfile('${p}')">${p}</div>`).join('');
+  } else {
+    pb.style.display='none';
+    curProfile=null;
+  }
+
+  // resolve script array
+  let scriptArr=[];
+  if(f.script){
+    if(Array.isArray(f.script)){
+      scriptArr=f.script;
+    } else {
+      // profileMode
+      const pro=f.script.byProfile[curProfile]||{};
+      scriptArr=[...f.script.common];
+      // inject profile ouverture replacement if exists
+      if(pro.ouverture && pro.ouverture.length>0){
+        scriptArr[0]={...scriptArr[0], profileNote:pro.ouverture};
+      }
+      if(pro.questions) scriptArr=[...scriptArr, ...pro.questions.map(q=>({...q,isProfile:true}))];
+    }
+  }
+
+  // block nav visibility
+  const hasDebrief=!!f.debrief;
+  const hasScript=!!(scriptArr.length);
+  const hasQA=!!(f.qa&&f.qa.length);
+  const hasReflex=!!(f.reflexes&&f.reflexes.length);
   ['debrief','script','qa','reflexes'].forEach(k=>{
     const btn=document.getElementById('bn-'+k);
-    btn.classList.toggle('off',!has[k]);
-    btn.classList.toggle('on',has[k]);
+    const has={debrief:hasDebrief,script:hasScript,qa:hasQA,reflexes:hasReflex}[k];
+    btn.classList.toggle('off',!has);
+    btn.classList.toggle('on',has);
   });
+
+  // livrables transverses content
+  const LT_PRODUCTEUR=`Je veux deux livrables transverses en priorité, dans les 10 jours :\n\n1. Inventaire contractuel consolidé — licences logicielles, contrats de support éditeur, contrats d'acquisition, contrats de prestation récurrente. Pour chacun : montant annuel, date d'échéance, une ligne sur le niveau de satisfaction.\n\n2. Situation budgétaire CAPEX / OPEX — avec ton estimation d'atterrissage à fin d'année. Ce qui est engagé, ce qui est prévisionnel, ce qui est à risque de dérive. Pas un document de présentation — une note de travail, 2 pages.`;
+  const LT_CONTRIBUTEUR=`Deux sujets transverses sur lesquels j'ai besoin d'une contribution de ta part, à transmettre à [Directeur Pilotage] avant [date J+10] :\n\n1. Les contrats fournisseurs et prestataires dans ton périmètre — montant, échéance, niveau de satisfaction.\n\n2. Ta contribution à la situation budgétaire : les lignes CAPEX / OPEX qui te concernent et ton estimation d'atterrissage sur ton périmètre.\n\nC'est [Directeur Pilotage] qui consolide — mais j'ai besoin que tu lui transmettes tes éléments à temps.`;
 
   // body
   let h='';
-  if(has.debrief){
+  if(hasDebrief){
     h+=`<div class="s-anchor a-debrief" id="a-debrief">📋 Debrief</div>`;
     h+=`<div class="blk-debrief"><div class="db-card"><div class="db-subj"><div class="db-subj-lbl">Objet</div><div class="db-subj-txt">${f.debrief.subject}</div></div><div class="db-body">${f.debrief.body}</div></div></div>`;
   }
-  if(has.script){
+  if(hasScript){
     h+=`<div class="s-anchor a-script" id="a-script">🎤 Script</div><div class="blk-script">`;
-    f.script.forEach(b=>{ h+=`<div class="sc-block"><div class="sc-timing">${b.timing}</div><div class="sc-text">${b.text.replace(/\n/g,'<br>')}</div></div>`; });
+    scriptArr.forEach(b=>{
+      if(b.isProfile){
+        h+=`<div class="profile-script-block"><div class="profile-script-timing">${b.timing}</div><div class="profile-script-text">${b.text.replace(/\n/g,'<br>')}</div></div>`;
+      } else {
+        let extra='';
+        if(b.profileNote) extra=`<div style="font-size:13px;color:#7AB8E8;margin-bottom:8px;font-style:normal;padding:6px 10px;background:rgba(74,144,217,0.08);border-radius:4px">👤 ${b.profileNote}</div>`;
+        h+=`<div class="sc-block">${extra}<div class="sc-timing">${b.timing}</div><div class="sc-text">${b.text.replace(/\n/g,'<br>')}</div></div>`;
+      }
+    });
+
+    // profile-specific livrable block
+    if(f.profileMode && curProfile){
+      const pro=f.script.byProfile[curProfile]||{};
+
+      // commande livrables perso
+      if(pro.livrables){
+        h+=`<div class="sc-block"><div class="sc-timing">Bloc · Commande de livrables — 5 min</div><div class="sc-text">${pro.livrables.replace(/\n/g,'<br>')}</div></div>`;
+      }
+
+      // livrables transverses
+      if(pro.livrablesTransverses){
+        const ltText=pro.livrablesTransverses==='producteur'?LT_PRODUCTEUR:LT_CONTRIBUTEUR;
+        h+=`<div class="lt-block"><div class="lt-label">📄 Livrables transverses prioritaires</div><div class="lt-text">${ltText.replace(/\n/g,'<br>')}</div></div>`;
+      }
+
+      // signal
+      if(pro.signal){
+        h+=`<div class="sig-block"><div class="sig-label">✓ Signal à envoyer</div><div class="sig-text">${pro.signal}</div></div>`;
+      }
+
+      // vigilance
+      if(pro.vigilance){
+        h+=`<div class="vig-block"><div class="vig-label">⚠ Vigilance · ${curProfile}</div><div class="vig-text">${pro.vigilance.replace(/\n/g,'<br>')}</div></div>`;
+      }
+    }
     h+=`</div>`;
   }
-  if(has.qa){
+  if(hasQA){
     h+=`<div class="s-anchor a-qa" id="a-qa">❓ Questions à déjouer</div><div class="blk-qa">`;
-    f.qa.forEach(item=>{ h+=`<div class="qa-block"><div class="qa-q" onclick="toggleQA(this)"><span>${item.q}</span><svg class="qa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div><div class="qa-ans"><div class="qa-sc">${item.script}</div></div></div>`; });
+    f.qa.forEach(item=>{h+=`<div class="qa-block"><div class="qa-q" onclick="toggleQA(this)"><span>${item.q}</span><svg class="qa-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div><div class="qa-ans"><div class="qa-sc">${item.script}</div></div></div>`;});
     h+=`</div>`;
   }
-  if(has.reflexes){
+  if(hasReflex){
     h+=`<div class="s-anchor a-reflexes" id="a-reflexes">⚡ Phrases réflexes</div><div class="blk-reflexes">`;
-    f.reflexes.forEach(r=>{ h+=`<div class="rf-card"><div class="rf-ctx">${r.ctx}</div><div class="rf-phrase">"${r.phrase}"</div></div>`; });
+    f.reflexes.forEach(r=>{h+=`<div class="rf-card"><div class="rf-ctx">${r.ctx}</div><div class="rf-phrase">"${r.phrase}"</div></div>`;});
     h+=`</div>`;
   }
   document.getElementById('fiche-body').innerHTML=h;
